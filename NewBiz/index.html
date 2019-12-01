@@ -46,16 +46,16 @@
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a>
+        <a href="#intro" class="scrollto"></a><img src="img/logo.png"  class="img-fluid">
       </div>
-
+      
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
           <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a href="#about">Acerca de nosotros</a></li>
+          <li><a href="#services">Servicios</a></li>
           
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#contact">Contactenos</a></li>
         </ul>
       </nav><!-- .main-nav -->
       
@@ -75,8 +75,8 @@
       <div class="intro-info">
         <h2>We provide<br><span>solutions</span><br>for your business!</h2>
         <div>
-          <a href="#" class="btn-get-started scrollto"  data-toggle="modal" data-target="#login-modal">Iniciar sesion</a>
-          <a href="#services" class="btn-services scrollto">Our Services</a>
+          <a href="" class="btn-get-started scrollto"  data-toggle="modal" data-target="#login-modal">Iniciar sesion</a>
+          <a href="#services" class="btn-services scrollto">Nuestros servicios</a>
         </div>
       </div>
 
@@ -538,24 +538,66 @@
   <!-- ------------------------------ -->
   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
               <div class="modal-dialog" role="document">
-                    <div class="loginmodal-container modal-content">
-                        <h1 style="font-family:Arial, Helvetica, sans-serif">Inicia sesion</h1><br>
-                      <form>
-                        <div class="form-group">
-                            <label style="font-weight: bold;" for="user">Usuario:</label>
-                            <input type="text" id= "user" name="user" placeholder="Ejem. juan1234@xyz.com">
+                    <div class=" modal-content">
+                      
+                      <div class="login-wrap">
+                        <div class="login-html">
+                          <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Inicia sesion</label>
+                          <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registrate</label>
+                          <div class="login-form">
+                            <div class="sign-in-htm">
+                              <div class="group">
+                                <label for="user" class="label">Usuario</label>
+                                <input id="user" type="text" class="input">
+                              </div>
+                              <div class="group">
+                                <label for="pass" class="label">Contrasena</label>
+                                <input id="pass" type="password" class="input" data-type="password">
+                              </div>
+                              <div class="group">
+                                <input id="check" type="checkbox" class="check" checked>
+                                <label for="check"><span class="icon"></span> Mantener sesion iniciada</label>
+                              </div>
+                              <div class="group">
+                                <a href="http://localhost:4200/#/dashboard" >
+                                    <input type="submit"style="cursor:pointer;" class="button" value="Acceder">
+                                </a>
+                                
+                              </div>
+                              <div class="hr"></div>
+                              <div class="foot-lnk">
+                                <a href="#forgot">Olvidaste la contrasrena?</a>
+                              </div>
+                            </div>
+                            <div class="sign-up-htm">
+                              <div class="group">
+                                <label for="user" class="label">Usuario</label>
+                                <input id="user" type="text" class="input">
+                              </div>
+                              <div class="group">
+                                <label for="pass" class="label">Contrasena</label>
+                                <input id="pass" type="password" class="input" data-type="password">
+                              </div>
+                              <div class="group">
+                                <label for="pass" class="label">Repita la contrasena</label>
+                                <input id="pass" type="password" class="input" data-type="password">
+                              </div>
+                              <div class="group">
+                                <label for="pass" class="label">Correo</label>
+                                <input id="pass" type="text" class="input">
+                              </div>
+                              <div class="group">
+                                <input type="submit" class="button" value="Sign Up">
+                              </div>
+                              <div class="hr"></div>
+                              <div class="foot-lnk">
+                                <label for="tab-1">Ya esta registrado?</a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div class="form-group">
-                            <label style="font-weight: bold;" for="pass">Contrasena:</label>
-                            <input type="password" id="pass" name="pass" placeholder="********">
-                        </div>
-                    
-                        <input type="submit" name="login" class="login loginmodal-submit" value="Entrar">
-                      </form>
-                        
-                      <div class="login-help">
-                        <a href="#">Register</a> - <a href="#">Forgot Password</a>
                       </div>
+
                     </div>
                 </div>
               </div>
@@ -563,3 +605,5 @@
   <!-- ------------------------------ -->
 </body>
 </html>
+
+
