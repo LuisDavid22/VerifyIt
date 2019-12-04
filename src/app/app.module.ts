@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './home/home.component';
+import { PruebaComponent } from './prueba/prueba.component';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    HomeComponent
+    HomeComponent,
+    PruebaComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

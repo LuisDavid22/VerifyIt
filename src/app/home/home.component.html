@@ -15,17 +15,17 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: NewBiz
@@ -69,13 +69,13 @@
     <div class="container">
 
       <div class="intro-img">
-        <img src="/img/intro-img.svg" alt="" class="img-fluid">
+        <img src="assets/img/intro-img.svg" alt="" class="img-fluid">
       </div>
 
       <div class="intro-info">
         <h2>Proveemos<br><span>soluciones</span><br>para tu empresa!</h2>
         <div>
-          <a href="" class="btn-get-started scrollto"  data-toggle="modal" data-target="#login-modal">Iniciar sesion</a>
+          <a  class="btn-get-started scrollto"  (click)="open(mymodal)">Iniciar sesion</a>
           <a href="#services" class="btn-services scrollto">Nuestros servicios</a>
         </div>
       </div>
@@ -124,13 +124,13 @@
           </div>
 
           <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
-            <img src="/img/about-img.svg" class="/img-fluid" alt="">
+            <img src="assets/img/about-img.svg" class="img-fluid" alt="">
           </div>
         </div>
 
         <div class="row about-extra">
           <div class="col-lg-6 wow fadeInUp">
-            <img src="/img/about-extra-1.svg" class="img-fluid" alt="">
+            <img src="assets/img/about-extra-1.svg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
             <h4>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h4>
@@ -145,7 +145,7 @@
 
         <div class="row about-extra">
           <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
-            <img src="/img/about-extra-2.svg" class="img-fluid" alt="">
+            <img src="assets/img/about-extra-2.svg" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
@@ -320,49 +320,49 @@
 
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-1.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
             </div>
           </div>
           
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-2.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
             </div>
           </div>
         
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-3.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
             </div>
           </div>
           
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-4.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
             </div>
           </div>
           
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-5.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
             </div>
           </div>
         
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-6.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
             </div>
           </div>
           
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-7.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
             </div>
           </div>
           
           <div class="col-lg-3 col-md-4 col-xs-6">
             <div class="client-logo">
-              <img src="/img/clients/client-8.png" class="img-fluid" alt="">
+              <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
             </div>
           </div>
 
@@ -517,22 +517,24 @@
   <!-- <div id="preloader"></div> -->
 
   <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="assets/lib/jquery/jquery.min.js"></script>
+  <script src="assets/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/lib/easing/easing.min.js"></script>
+  <script src="assets/lib/mobile-nav/mobile-nav.js"></script>
+  <script src="assets/lib/wow/wow.min.js"></script>
+  <script src="assets/lib/waypoints/waypoints.min.js"></script>
+  <script src="assets/lib/counterup/counterup.min.js"></script>
+  <script src="assets/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="assets/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="assets/lib/lightbox/js/lightbox.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
+  <script src="assets/js/main.js"></script>  
 
 
   <!-- ------------------------------ -->
@@ -603,7 +605,68 @@
               </div>
 
   <!-- ------------------------------ -->
+  <ng-template #mymodal let-modal>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      <div class="login-wrap">
+          <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Inicia sesion</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registrate</label>
+            <div class="login-form">
+              <div class="sign-in-htm">
+                <div class="group">
+                  <label for="user" class="label">Usuario</label>
+                  <input id="user" type="text" class="input">
+                </div>
+                <div class="group">
+                  <label for="pass" class="label">Contrasena</label>
+                  <input id="pass" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                  <input id="check" type="checkbox" class="check" checked>
+                  <label for="check"><span class="icon"></span> Mantener sesion iniciada</label>
+                </div>
+                <div class="group">
+                  <a href="/dashboard" >
+                      <input type="submit"style="cursor:pointer;" class="button" value="Acceder">
+                  </a>
+                  
+                </div>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                  <a href="#forgot">Olvidaste la contrasrena?</a>
+                </div>
+              </div>
+              <div class="sign-up-htm">
+                <div class="group">
+                  <label for="user" class="label">Usuario</label>
+                  <input id="user" type="text" class="input">
+                </div>
+                <div class="group">
+                  <label for="pass" class="label">Contrasena</label>
+                  <input id="pass" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                  <label for="pass" class="label">Repita la contrasena</label>
+                  <input id="pass" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                  <label for="pass" class="label">Correo</label>
+                  <input id="pass" type="text" class="input">
+                </div>
+                <div class="group">
+                  <input type="submit" class="button" value="Sign Up">
+                </div>
+                <div class="hr"></div>
+                <div class="foot-lnk">
+                  <label for="tab-1">Ya esta registrado?</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  </ng-template>
 </body>
 </html>
-
-
