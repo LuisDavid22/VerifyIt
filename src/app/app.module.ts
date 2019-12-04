@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './home/home.component';
 import { PruebaComponent } from './prueba/prueba.component';
+import { ReporteComponent } from './reporte/reporte.component';
 
 
 
@@ -32,7 +33,8 @@ import { PruebaComponent } from './prueba/prueba.component';
     AdminLayoutComponent,
     AuthLayoutComponent,
     HomeComponent,
-    PruebaComponent
+    PruebaComponent,
+    ReporteComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

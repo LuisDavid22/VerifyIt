@@ -1,3 +1,4 @@
+import { ReporteComponent } from './reporte/reporte.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
@@ -9,11 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { PruebaComponent } from './prueba/prueba.component';
 
 const routes: Routes =[
-  /*{
+  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  },*/ {
+  }, {
     path: '',
     component: AdminLayoutComponent,
     children: [
@@ -32,7 +33,10 @@ const routes: Routes =[
       }
     ]
   },*/
- 
+ {
+   path:'reporte',
+   component: ReporteComponent
+ },
   {
     path: '**',
     component:HomeComponent

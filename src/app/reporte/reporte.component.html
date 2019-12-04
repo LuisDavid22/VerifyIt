@@ -1,0 +1,659 @@
+<style>
+        *, *:before, *:after {
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+            box-sizing: border-box;
+      }
+      html {
+        font-size: 1.125em; /*18px*/
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        font-family: 'Roboto', sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.42857143;
+        padding:1em;
+      }
+      small {color:#808080;}
+      
+      a {color:#79c46b;}
+      a:hover {text-decoration:underline;}
+      
+      button {
+        bottom:1px;
+        cursor:pointer;
+        margin-right:8px;
+        position:relative;
+        padding:4px 11px;
+        border:1px solid #0085a6;
+        background:none;
+        border-radius:3px;
+        color:#0085a6;
+        font-size:1em;
+        transition:all .3s ease-in-out;
+      }
+      button:hover {background:#0085a6; color:#fff;}
+      
+      /* Tables */
+        /* Responsive scroll-y table */
+      .table-responsive {min-height:.01%; overflow-x:auto;}
+      @media screen and (max-width: 801px) {
+        .table-responsive {width:100%; overflow-y:hidden; -ms-overflow-style:-ms-autohiding-scrollbar;}
+      }
+        /* Default table */
+      table {
+        border-collapse:collapse;
+        border-spacing:0;
+        -webkit-box-shadow:0px 7px 6px -6px rgba(0,0,0,.28);
+           -moz-box-shadow:0px 7px 6px -6px rgba(0,0,0,.28);
+                box-shadow:0px 7px 6px -6px rgba(0,0,0,.28);
+        margin-bottom:40px;
+        margin-top:.5em;  
+        width:100%; 
+        max-width:100%;
+      }
+      table thead tr {border-bottom:3px solid #0085a6; color:#000;}
+      table tfoot tr {border-top:3px solid #0085a6;}
+      table thead th, table tfoot th {
+        background-color:#fff;
+        color:#000;
+        font-size:.83333em;
+        line-height:1.8;
+        padding: 15px 14px 13px 14px;
+        position:relative;
+        text-align:left;
+        text-transform:uppercase; 
+      }
+      table tbody tr {background-color:#fff;}
+      table tbody tr:hover {background-color:#eee; color:#000;}
+      table th, table td {
+        border:1px solid #bfbfbf;
+        padding:10px 14px;
+        position:relative;
+        vertical-align:middle;
+      }
+      
+      .imgcenter {
+        text-align: center;
+      }
+      
+      caption {font-size:1.111em; font-weight:300; padding:10px 0;}
+      
+      @media (max-width:1024px) {
+        table {font-size: .944444em;}
+      }
+      @media (max-width:767px) {
+        table {font-size: 1em;}
+      }
+      
+       /* Responsive table full */
+      @media (max-width: 767px) {
+        .table-responsive-full {box-shadow:none;}
+        .table-responsive-full thead tr, 
+        .table-responsive-full tfoot tr {display:none;}
+        .table-responsive-full tbody tr {
+          -webkit-box-shadow:0px 7px 6px -6px rgba(0,0,0,.28);
+             -moz-box-shadow:0px 7px 6px -6px rgba(0,0,0,.28);
+                  box-shadow:0px 7px 6px -6px rgba(0,0,0,.28);
+          margin-bottom:20px;
+        }
+        .table-responsive-full tbody tr:last-child {margin-bottom:0;}
+        .table-responsive-full tr,
+        .table-responsive-full td {display:block;}
+        .table-responsive-full td {
+          background-color:#fff;
+          border-top:none;
+          position:relative;
+          padding-left:50%;
+        }
+        .table-responsive-full td:hover {background-color:#eee; color:#000;}
+        .table-responsive-full td:hover:before {color:hsl(0, 0%, 40%);}
+        
+        .table-responsive-full td:first-child {
+          border-top:1px solid #bfbfbf;
+          border-bottom: 3px solid #0085a6;
+          border-radius: 4px 4px 0 0;
+          color: #000;
+          font-size: 1.11111em;
+          font-weight: bold;
+        }
+        .table-responsive-full td:before {
+          content: attr(data-label);
+          display: inline-block;
+          color: hsl(0, 0%, 60%);
+          font-size: 14px;
+          font-weight: normal;
+          margin-left: -100%;
+          text-transform: uppercase;
+          width: 100%;
+          white-space:nowrap;
+        }
+      }
+      @media (max-width: 360px) {
+        .table-responsive-full td {padding-left:14px;}
+        .table-responsive-full td:before {display:block; margin-bottom:.5em; margin-left:0;}
+      }
+        /* Sort table */
+      .sort-table-arrows {float:right; transition:.3s ease;}
+      .sort-table-arrows button {margin:0; padding:4px 8px;}
+      .sort-table th.resolution {width:40% !important;}
+      .sort-table th.company, .sort-table th.initiative {width:20% !important;}
+      .sort-table .sort-table th.year, .sort-table th.filingdocs, .sort-table th.info {width:15% !important;}
+      .sort-table .title {font-weight: bold;}
+      .sort-table .title small {font-weight:normal;}
+      
+      @media (max-width:1024px) {
+        .sort-table th,.sort-table-arrows {text-align:center;}
+        .sort-table-arrows {float:none; padding:8px 0 0; position:relative; right:0px;}
+        .sort-table-arrows button {bottom:0;}
+      }
+      @media (max-width:767px) {
+        .sort-table thead tr {border-bottom:none; display:block; margin:10px 0; text-align:center;}
+        .sort-table thead tr th.resolution {display:none;}
+        .sort-table thead tr th.filingdocs {display:none;}
+        .sort-table th {
+          border-bottom:1px solid #bfbfbf;
+          border-radius:4px;
+          display:inline-block;
+          font-size:.75em;
+          line-height:1;
+          margin:3px 0;
+          padding:10px;
+        }
+        .sort-table th.company, .sort-table th.initiative, .sort-table th.resolution, .sort-table th.filingdocs, .sort-table th.info {width: 100px !important;}
+        .sort-table td.title:before {display:none;}
+        .sort-table td.title {letter-spacing:.03em; padding-left:14px;}
+      }
+      </style>
+      <script type="text/javascript">
+          function sort(ascending, columnClassName, tableId) {
+          var tbody = document.getElementById(tableId).getElementsByTagName(
+              "tbody")[0];
+          var rows = tbody.getElementsByTagName("tr");
+          var unsorted = true;
+          while (unsorted) {
+            unsorted = false
+            for (var r = 0; r < rows.length - 1; r++) {
+              var row = rows[r];
+              var nextRow = rows[r + 1];
+              var value = row.getElementsByClassName(columnClassName)[0].innerHTML;
+              var nextValue = nextRow.getElementsByClassName(columnClassName)[0].innerHTML;
+              value = value.replace(',', ''); // in case a comma is used in float number
+              nextValue = nextValue.replace(',', '');
+              if (!isNaN(value)) {
+                value = parseFloat(value);
+                nextValue = parseFloat(nextValue);
+              }
+              if (ascending ? value > nextValue : value < nextValue) {
+                tbody.insertBefore(nextRow, row);
+                unsorted = true;
+              }
+            }
+          }
+        };
+      </script>
+      <h1>Reporte de titulos analizados</h1>
+      
+      <table id="content-table3" class="table-responsive-full sort-table">
+        <thead>
+          <tr>
+            <th class="company">Titulos
+              <div class="sort-table-arrows">
+                <a href="javascript:sort(true, 'company', 'content-table3');"><button class="button" title="Αύξουσα ταξινόμηση"><i class="fa fa-chevron-down"></i></button></a>
+                <a href="javascript:sort(false, 'company', 'content-table3');"><button class="button" title="Φθίνουσα ταξινόμηση"><i class="fa fa-chevron-up"></i></button></a>
+              </div>
+            </th>
+            <th class="initiative">Universidad
+              <div class="sort-table-arrows">
+                <a href="javascript:sort(true, 'initiative', 'content-table3');"><button class="button" title="Αύξουσα ταξινόμηση"><i class="fa fa-chevron-down"></i></button></a>
+                <a href="javascript:sort(false, 'initiative', 'content-table3');"><button class="button" title="Φθίνουσα ταξινόμηση"><i class="fa fa-chevron-up"></i></button></a>
+              </div>
+            </th>
+            <th class="resolution">Descripcion
+            </th>
+            <th class="filingdocs">Filing Documents
+            </th>
+            <th class="year">A?o
+              <div class="sort-table-arrows">
+                <a href="javascript:sort(true, 'year', 'content-table3');"><button class="button" title="Αύξουσα ταξινόμηση"><i class="fa fa-chevron-down"></i></button></a>
+                <a href="javascript:sort(false, 'year', 'content-table3');"><button class="button" title="Φθίνουσα ταξινόμηση"><i class="fa fa-chevron-up"></i></button></a>
+              </div>
+            </th>
+            <th class="status"> Status
+              <div class="sort-table-arrows">
+                <a href="javascript:sort(true, 'status', 'content-table3');"><button class="button" title="Αύξουσα ταξινόμηση"><i class="fa fa-chevron-down"></i></button></a>
+                <a href="javascript:sort(false, 'status', 'content-table3');"><button class="button" title="Φθίνουσα ταξινόμηση"><i class="fa fa-chevron-up"></i></button></a>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Abbvie</span><a href="/resolutions/2016/12/31/abbvie-inc-request-for-report-on-pharmaceutical-take-back"><img src="https://www.asyousow.org/wp-content/uploads/2015/11/abbvie_thumbnail.png"></a></td>
+            <td data-label="Initiative" class="initiative">Pharmaceutical Waste</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners of AbbVie request that the board of directors issue a report, at reasonable expense and excluding proprietary information, reviewing the company’s existing policies for safe disposition by users of prescription drugs to prevent water pollution, and setting forth policy options for a proactive response, including determining whether the company should endorse partial or full industry responsibility for take back programs by providing funding or resources for such programs.</td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/12/31/abbvie-inc-request-for-report-on-pharmaceutical-take-back">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Blocked by Company at SEC</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><a href="/resolutions/2016/12/16/amazoncom-inc-request-for-report-on-foam-packaging"><span style="font-size:0;">Amazon.com</span><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-AMAZON.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Consumer Packaging</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED THAT: Shareowners of Amazon.com request that the board of directors issue a report at reasonable cost, omitting confidential information, assessing the environmental impacts of continued use of foam packing materials, including quantifying the amount that could reach the environment, and assessing the potential for increased risk of adverse health effects to marine animals and humans. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/16/amazoncom-inc-request-for-report-on-foam-packaging">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Ameren</span><a href="/resolutions/2017/01/31/ameren-corporation-request-for-report-on-equity-retention-requirements"><img src="https://www.asyousow.org/wp-content/uploads/2013/02/COMPANY-LOGO-AMEREN.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Executive Compensation</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: The shareholders of Ameren urge the Compensation Committee of the Board of Directors (the “Committee”) to adopt a policy requiring that senior executives retain a significant percentage of shares acquired through equity compensation programs until two years following the termination of their employment (through retirement or otherwise), and to report to shareholders regarding the policy before the 2018 annual meeting of shareholders. The policy shall apply to future grants and awards of equity compensation and should address the permissibility of transactions such as hedging transactions which are not sales but reduce the risk of loss to the executive. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/ameren-corporation-request-for-report-on-equity-retention-requirements">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Pending</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Ameren</span><a href="/resolutions/2017/01/31/ameren-corporation-request-for-report-on-coal-combustion-residuals"><img src="https://www.asyousow.org/wp-content/uploads/2013/02/COMPANY-LOGO-AMEREN.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Coal</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that the Board prepare a complete report on the company’s efforts, above and beyond current compliance, to identify and reduce environmental and health hazards associated with past, present and future handling of coal combustion residuals, and how those efforts may reduce legal, reputational and financial risks to the company.  This report should be available to shareholders within 6 months of the 2017 annual meeting, be prepared at reasonable cost, and omit confidential information such as proprietary data or legal strategy. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/ameren-corporation-request-for-report-on-coal-combustion-residuals">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Pending</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Chevron</span><a href="/resolutions/2017/12/31/chevron-corporation-request-for-report-on-methane-leaks"><img src="https://www.asyousow.org/wp-content/uploads/2013/01/chevron-logo.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Methane</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED:  Shareholders request that Chevron provide a report (at reasonable cost, omitting proprietary information) using quantitative indicators, on the company’s actions beyond regulatory requirements to minimize methane emissions, particularly leakage, from the company’s hydraulic fracturing operations. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/12/31/chevron-corporation-request-for-report-on-methane-leaks">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Pending</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Anadarko</span><a href="/resolutions/2017/01/31/anadarko-request-for-report-on-carbon-asset-risk"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-ANADARKO.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that by 2018 Anadarko publish an analysis, at reasonable cost and omitting proprietary information, of long term impacts to the Company’s oil and gas reserves and resources under a scenario in which oil and gas demand reduction results from carbon restrictions or related rules or commitments adopted by governments consistent with the Paris Agreement’s 2 degree C global warming target. The reporting should assess the resilience of the company’s portfolio of assets through 2040 and the financial risks associated with such a scenario. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/anadarko-request-for-report-on-carbon-asset-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Chevron</span><a href="/resolutions/2016/12/31/chevron-corporation-request-for-report-on-low-carbon-transition"><img src="https://www.asyousow.org/wp-content/uploads/2013/01/chevron-logo.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Chevron issue a report (at reasonable cost, omitting proprietary information), assessing how it can respond to climate change and the resultant transition to a low carbon economy by evaluating the feasibility of altering the company’s energy mix by separating or selling off its highest carbon-risk assets, divisions, and subsidiaries, and/or buying or merging with companies with outstanding assets or technologies in low carbon or renewable energy. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/chevron-corporation-request-for-report-on-low-carbon-transition">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">26.0%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Devon Energy</span><a href="/resolutions/2017/01/31/devon-energy-corporation-request-for-report-on-modifying-executive-compensation-metrics"><img src="https://www.asyousow.org/wp-content/uploads/2015/12/devon_energy_125x71.png"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Devon Energy issue a report that assesses, in light of global concerns about climate-change and the resultant pressures to transition to a low carbon economy, the benefits and risks of continuing to use oil and gas reserve additions as a metric in named executives’ compensation. The report should be produced at reasonable cost and omit proprietary information. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/devon-energy-corporation-request-for-report-on-modifying-executive-compensation-metrics">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">6.9%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Dominion</span><a href="/resolutions/2016/12/31/dominion-energy-inc-request-for-report-on-the-topic-of-the-resolution"><img src="https://www.asyousow.org/wp-content/uploads/2013/09/COMPANY-LOGO-dominion-e1378837735736.png"></a></td>
+            <td data-label="Initiative" class="initiative">Methane</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request Dominion issue a report (by October 2017, at reasonable cost, omitting proprietary information) reviewing the Company’s policies, actions and plans to measure, monitor, mitigate, disclose, and set quantitative reduction targets for methane emissions resulting from all operations, including storage and transportation, under the Company’s financial or operational control. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/dominion-energy-inc-request-for-report-on-the-topic-of-the-resolution">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">23.7%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Duke Energy</span><a href="/resolutions/2016/12/31/duke-energy-request-for-report-on-coal-and-public-health"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-Duke-e1378415885124.png"></a></td>
+            <td data-label="Initiative" class="initiative">Coal</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Duke Energy publish a report assessing the public health impacts of its coal use on rates of illness, mortality, and infant death, due to coal related air and water pollution in communities adjacent to Duke’s coal operations, and provide a financial analysis of the cost to the Company of coal-related public health harms, including potential liability and reputational damage. The report should be published by 2018, at reasonable expense, and omit proprietary information. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/duke-energy-request-for-report-on-coal-and-public-health">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">27.1%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Dunkin' Brands</span><a href="/resolutions/2016/12/31/dunkin-brands-request-for-report-on-recyclable-packaging"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/imgres-150x48.png"></a></td>
+            <td data-label="Initiative" class="initiative">Consumer Packaging</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners of Dunkin’ Brands request the board of directors to prepare a report on the feasibility of developing a comprehensive recycling and reuse policy for food and beverage packaging to conserve resources, and reduce water pollution and greenhouse gas emissions. The report, to be prepared at reasonable cost, may omit confidential information. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/dunkin-brands-request-for-report-on-recyclable-packaging">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Emerson</span><a href="/resolutions/2017/01/31/emerson-electric-request-for-report-on-sustainability-report"><img src="https://www.asyousow.org/wp-content/uploads/2014/11/EMERSON-LOGO.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request Emerson Electric (Emerson) issue a sustainability report describing the company’s policies, performance, and improvement targets related to key environmental, social and governance (ESG) risks and opportunities. The report should be available on the company website by December 31, 2017, prepared at reasonable cost and omitting proprietary information. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/emerson-electric-request-for-report-on-sustainability-report">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Emerson</span><a href="/resolutions/2016/08/31/emerson-electric-request-for-report-on-ghg-targets"><img src="https://www.asyousow.org/wp-content/uploads/2014/11/EMERSON-LOGO.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Greenhouse Gas Emissions</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request Emerson Electric adopt time-bound, quantitative, company-wide goals for reducing total greenhouse gas (GHG) emissions, taking into account the goals of the Paris Climate Agreement, and issue a report at reasonable cost and omitting proprietary information on its plans to achieve these goals.</td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/08/31/emerson-electric-request-for-report-on-ghg-targets">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">34.0%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Entergy</span><a href="/resolutions/2016/12/31/entergy-corporation-request-for-report-on-distributed-generation"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-Entergy_Logo-e1373579396952.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: With board oversight, shareholders request that Entergy prepare a report (at reasonable cost and omitting proprietary information) describing how the Company could adapt its enterprise-wide business model to significantly increase deployment of distributed-scale non-carbon-emitting electricity resources as a means of reducing societal greenhouse gas emissions consistent with limiting global warming to no more than 2 degrees Celsius over pre-industrial levels.</td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/entergy-corporation-request-for-report-on-distributed-generation">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">35.0%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">ExxonMobil</span><a href="/resolutions/2016/12/31/exxonmobil-request-for-report-on-low-carbon-transition"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-exxon-mobil.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request Exxon issue a report (at reasonable cost, omitting proprietary information) summarizing strategic options or scenarios for aligning its business operations with a low carbon economy (such as the International Energy Agency’s 450 climate change scenario), including for example altering the company’s energy mix by separating or selling some of its highest carbon-risk assets, divisions, and subsidiaries; buying, or merging with, companies with assets or technologies in low carbon or renewable energy; or internally expanding its own renewable energy portfolio. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/exxonmobil-request-for-report-on-low-carbon-transition">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Pending</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">ExxonMobil</span><a href="/resolutions/2016/12/31/exxonmobil-request-for-report-on-methane-leaks"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-exxon-mobil.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Methane</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Exxon report annually to shareholders (at reasonable cost, omitting proprietary information) and using quantitative indicators, the company’s actions beyond regulatory requirements to minimize methane emissions, particularly leakage, from the company’s hydraulic fracturing operations. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/exxonmobil-request-for-report-on-methane-leaks">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">38.7%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">FirstEnergy</span><a href="/resolutions/2016/12/31/firstenergy-corporation-request-for-report-on-carbon-asset-risk"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-firstenergy.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that FirstEnergy prepare a report, at reasonable cost and omitting proprietary information, disclosing its strategy for aligning business operations with the 2015 Paris Agreement’s goal of limiting global warming to a maximum of 2 degrees Celsius, while maintaining the provision of safe, affordable, reliable energy. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/firstenergy-corporation-request-for-report-on-carbon-asset-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">43.4%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Goldman Sachs</span><a href="/resolutions/2016/12/31/goldman-sachs-request-for-report-on-review-of-indigenous-rights-risk"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Goldman-Sachs-1-150x150.png"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Goldman Sachs prepare a public report on the North Dakota Access Pipeline, describing its financing of companies involved in the pipeline, how or whether its Indigenous rights policy was applied to the financing of such companies, and whether Goldman Sachs complied with its Indigenous rights policy in financing such companies. Building upon that analysis, shareholders request the report also consider policy options to improve implementation of its Indigenous rights policy, such as enhancing the risk metrics and due diligence process for reviewing financed companies’ policies and practices for consistency with Goldman Sachs Indigenous rights policy, and mechanisms for engaging companies that fail to adhere to Goldman Sachs’ Indigenous rights policy. Shareholders request the report be prepared at reasonable expense and exclude proprietary or legally privileged information. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/goldman-sachs-request-for-report-on-review-of-indigenous-rights-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Hain Celestial Group</span><a href="/resolutions/2017/10/31/hain-celestial-request-for-report-on-sustainability-goals-and-progress"><img src="https://www.asyousow.org/wp-content/uploads/2013/09/COMPANY-LOGO-hain-celestial-e1378836842514.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">GMOs &amp; Pesticides</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request the Company issue a sustainability report, prepared at reasonable cost and omitting proprietary information, describing its policies, performance, and improvement targets related to key ESG risks and opportunities. The report should be available on the Company's website within 12 months of the 2017 annual meeting. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/10/31/hain-celestial-request-for-report-on-sustainability-goals-and-progress">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Hess</span><a href="/resolutions/2016/12/31/hess-corporation-request-for-report-on-carbon-asset-risk"><img src="https://www.asyousow.org/wp-content/uploads/2014/03/hess-e1399673477601.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that by 2018 Hess publish an analysis, at reasonable cost and omitting proprietary information, of long term impacts to the Company’s oil and gas reserves and resources under a scenario in which demand reduction for oil and gas results from carbon restrictions or related rules or commitments adopted by governments consistent with the Paris Agreement’s 2 degree C global warming target. The reporting should assess the resilience of the company’s portfolio of assets through 2040 and the financial risks associated with such a scenario. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/hess-corporation-request-for-report-on-carbon-asset-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">30.1%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Hormel</span><a href="/resolutions/2016/08/31/hormel-foods-corporation-request-for-report-on-water-stewardship-policy"><img src="https://www.asyousow.org/wp-content/uploads/2015/08/hormel-logo-small.png"></a></td>
+            <td data-label="Initiative" class="initiative">Antibiotics &amp; Factory Farms</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED:  Shareholders request the Board of Directors adopt and implement a water stewardship policy designed to reduce risks of water contamination at: Hormel-owned facilities; facilities under contract to Hormel; and Hormel’s suppliers. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/08/31/hormel-foods-corporation-request-for-report-on-water-stewardship-policy">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Johnson &amp; Johnson</span><a href="/resolutions/2016/12/31/johnson-and-johnson-request-for-report-on-proper-disposal-of-pharmaceuticals"><img src="https://www.asyousow.org/wp-content/uploads/2015/11/johnson-and-johnson-small1.png"></a></td>
+            <td data-label="Initiative" class="initiative">Pharmaceutical Waste</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED THAT: Shareowners of Johnson & Johnson request that the board of directors issue a report, at reasonable expense and excluding proprietary information, reviewing the company’s existing policies for safe disposition by users of prescription drugs to prevent water pollution, and setting forth policy options for a proactive response, including determining whether the company should endorse partial or full industry responsibility for take back programs by providing funding or resources for such programs. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/johnson-and-johnson-request-for-report-on-proper-disposal-of-pharmaceuticals">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Blocked by Company at SEC</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Kellogg's</span><a href="/resolutions/2016/12/31/kellogg-company-request-for-report-on-glyphosate-use"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Kelloggslogo-150x100.png"></a></td>
+            <td data-label="Initiative" class="initiative">GMOs &amp; Pesticides</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that the Board publish a report, within one year of the annual meeting, at reasonable expense and omitting proprietary information, that discusses the Company’s options for adoption of policies, above and beyond legal compliance, to prevent or minimize environmental and public health harms from glyphosate.  </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/kellogg-company-request-for-report-on-glyphosate-use">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Kraft Heinz</span><a href="/resolutions/2016/12/31/the-kraft-heinz-company-request-for-report-on-recyclable-packaging"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/kraftheinz.png"></a></td>
+            <td data-label="Initiative" class="initiative">Consumer Packaging</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners of Kraft Heinz request that the board of directors issue a report at reasonable cost, omitting confidential information, assessing the environmental impacts of continuing to use non-recyclable brand packaging. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/the-kraft-heinz-company-request-for-report-on-recyclable-packaging">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">13.0%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Kroger</span><a href="/resolutions/2017/01/31/kroger-request-for-report-on-recyclable-packaging-goals"><img src="https://www.asyousow.org/wp-content/uploads/2012/10/COMPANY-LOGO-kroger.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Consumer Packaging</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners of Kroger request that the board of directors issue a report, at reasonable cost, omitting confidential information, assessing the environmental impacts of continuing to use unrecyclable brand packaging.</td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/kroger-request-for-report-on-recyclable-packaging-goals">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">24.0%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Kroger</span><a href="/resolutions/2017/01/31/kroger-request-for-report-on-renewable-energy-goals"><img src="https://www.asyousow.org/wp-content/uploads/2012/10/COMPANY-LOGO-kroger.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request Kroger produce a report assessing the climate change risk reduction benefits of adopting quantitative, enterprise-wide targets for increasing its renewable energy sourcing. The report should be produced at reasonable cost and exclude proprietary information. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/kroger-request-for-report-on-renewable-energy-goals">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">24.8%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Marathon Petroleum Corporation</span><a href="/resolutions/2017/01/31/marathon-petroleum-corporation-request-for-report-on-construction-and-operation-of-energy-infrastructure"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Marathon-Petroleum-Corporation.png"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Marathon prepare a report to shareholders, at reasonable cost and omitting proprietary information, that describes the due diligence process used to identify and address environmental and social risks, including Indigenous rights risk, in reviewing potential acquisitions. Such a report should consider: Which committees, departments and/or managers are responsible for review, oversight and verification; How environmental and social risks are identified and assessed; Which international standards are used to define the company’s due diligence procedures; How this information informs and is weighted in acquisition decisions; If and how risks identified were disclosed to shareholders; Whether the company has an exit option in DAPL; Whether Marathon will adjust its policies and practices so as to not become entangled with such situations in the future. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/marathon-petroleum-corporation-request-for-report-on-construction-and-operation-of-energy-infrastructure">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">35.2%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">McDonald's</span><a href="/resolutions/2017/01/31/mcdonalds-corporation-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry"><img src="https://www.asyousow.org/wp-content/uploads/2012/10/COMPANY-LOGO-mcdonalds.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Antibiotics &amp; Factory Farms</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that the Board update the 2015 McDonald’s Global Vision for Antimicrobial Stewardship in Food Animals by adopting the following policy regarding use of antibiotics by its meat suppliers: Globally in the poultry supply chain prohibit the use of antibiotics in classes of drugs used in human medicine for purposes other than treatment or non-routine control of veterinarian-diagnosed illness (e.g. for growth promotion and routine disease prevention), allowing only for use in treatment of veterinarian-diagnosed illness in a flock, and; Set global sourcing targets with timelines for pork and beef raised without the non-therapeutic use of medically-important antibiotics. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/mcdonalds-corporation-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">31.0%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">McDonald's</span><a href="/resolutions/2016/12/31/mcdonalds-corporation-request-for-report-on-risks-of-foam-cups"><img src="https://www.asyousow.org/wp-content/uploads/2012/10/COMPANY-LOGO-mcdonalds.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Consumer Packaging</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED THAT: Shareowners of McDonald’s request that the board of directors issue a report at reasonable cost, omitting confidential information, assessing the environmental impacts of continued use of polystyrene foam beverage cups, including quantifying the amount that could reach the environment, and assessing the potential for increased risk of adverse health effects to marine animals and humans. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/mcdonalds-corporation-request-for-report-on-risks-of-foam-cups">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">32.3%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Mead Johnson Nutrition</span><a href="/resolutions/2017/01/31/mead-johnson-nutrition-request-for-report-on-nanomaterials"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Mean-Johnson-150x54.png"></a></td>
+            <td data-label="Initiative" class="initiative">Nanomaterials</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request the Board publish, at reasonable cost and excluding proprietary information, a report on the potential health hazards of nanomaterials, particularly of nano-HA; identifying the types of the company’s products or packaging that currently contain nanoparticles; and stating any actions management is taking to reduce or eliminate potential health and environmental risks of nanoparticles, such as eliminating the use of nanoparticles until or unless they are proven safe through long-term testing. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/mead-johnson-nutrition-request-for-report-on-nanomaterials">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Annual Meeting Cancelled</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Mondelez International</span><a href="/resolutions/2016/12/31/mondelez-international-inc-request-for-report-on-recyclable-packaging"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-mondelez.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Consumer Packaging</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners of Mondelēz International request the Board to issue a report at reasonable cost, omitting confidential information, assessing the environmental impacts of continuing to use non-recyclable brand packaging. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/mondelez-international-inc-request-for-report-on-recyclable-packaging">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">27.5%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Monsanto</span><a href="/resolutions/2017/01/31/monsanto-company-request-for-report-on-lobbying-disclosure"><img src="https://www.asyousow.org/wp-content/uploads/2013/10/logo_Monsanto1-e1382837301737.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">GMOs &amp; Pesticides</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: The shareowners of Monsanto request the preparation of a report, updated annually, disclosing: 1. Company policy and procedures governing lobbying, both direct and indirect, and grassroots lobbying communications. 2. All payments by Monsanto used for (a) direct or indirect lobbying or (b) grassroots lobbying communications, in each case including the amount of the payment and the recipient. 3. Monsanto’s membership in and payments to any tax-exempt organization that writes and endorses model legislation. 4. Description of the decision making process and oversight by management and the Board for making payments described in sections 2 and 3 above. For purposes of this proposal, a “grassroots lobbying communication” is a communication directed to the general public that: (a) refers to specific legislation or regulation, (b) reflects a view on the legislation or regulation and (c) encourages the recipient of the communication to take action with respect to the legislation or regulation. “Indirect lobbying” is lobbying engaged in by a trade association or other organization of which Monsanto is a member. Both “direct and indirect lobbying” and “grassroots lobbying communications” include efforts at the local, state and federal levels. The report shall be presented to the Audit Committee or other relevant oversight committees and posted on Monsanto’s website. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/01/31/monsanto-company-request-for-report-on-lobbying-disclosure">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">28.3%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Morgan Stanley</span><a href="/resolutions/2016/12/31/morgan-stanley-request-for-report-on-review-of-indigenous-rights-risk"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Morgan-Stanley1-150x48.png"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Morgan Stanley prepare a report, at reasonable expense and excluding proprietary or legally privileged information, assessing how its indigenous rights policy could be extended to the financing of companies involved in energy, mining, oil and gas, and infrastructure (including pipelines, dams, roads, railroads) operations, where such companies are currently, or might in the future be, involved in projects located in indigenous territories, even if those projects are not directly financed by our company. Policy options considered in the report should include, for instance, review of the financed companies’ due diligence policies or practices for consistency with Morgan Stanley’s project-financing commitments such as consent and impact avoidance and mitigation.</td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/morgan-stanley-request-for-report-on-review-of-indigenous-rights-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">nrg</span><a href="/resolutions/2016/12/31/nrg-energy-inc-request-for-report-on-carbon-asset-risk"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/NRG-Energy-150x150.png"></a></td>
+            <td data-label="Initiative" class="initiative">Coal</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: As You Sow, on behalf of NRG shareholders, requests that NRG prepare a public report, within 12 months of the Annual Meeting, describing how it will address the risk of stranded assets and coal demand reductions associated with global climate change, including analysis of long and short term financial risks to the company under the International Energy Agency’s 450 scenario. The report should be produced at reasonable cost and omit proprietary information. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2016/12/31/nrg-energy-inc-request-for-report-on-carbon-asset-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Occidental</span><a href="/resolutions/2017/04/30/occidental-petroleum-corporation-request-for-report-on-climate-change-assessment"><img src="https://www.asyousow.org/wp-content/uploads/2014/03/occidental-e1395006198949.png"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Occidental Petroleum Corporation (Occidental), with board oversight, produce an assessment of long-term portfolio impacts of plausible scenarios that address climate change, at reasonable cost and omitting proprietary information. The assessment, produced annually with the initial report issued prior to the 2018 Annual Meeting of Stockholders, should explain how capital planning and business strategies incorporate analyses of the short- and long-term financial risks of a lower carbon economy. Specifically, the report should outline the impacts of multiple, fluctuating demand and price scenarios on the company’s existing reserves and resource portfolio - including the International Energy Agency’s “450 Scenario,” which sets out an energy pathway consistent with the internationally recognized goal of limiting the global increase in temperature to 2 degrees Celsius. </td>
+            <td data-label="Filing Documents" class="filingdocs"><a href="/resolutions/2017/04/30/occidental-petroleum-corporation-request-for-report-on-climate-change-assessment">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">67.3%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Pfizer</span><a href="/resolutions/2016/12/31/pfizer-inc-request-for-report-on-proper-disposal-of-pharmaceuticals"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/pfizer-logo.png"></a></td>
+            <td data-label="Initiative" class="initiative">Pharmaceutical Waste</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners of Pfizer request that the board of directors issue a report, at reasonable expense and excluding proprietary information, reviewing the company’s existing policies for safe disposition by users of prescription drugs to prevent water pollution, and setting forth policy options for a proactive response, including determining whether the company should endorse partial or full industry responsibility for take back programs by providing funding or resources for such programs. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/12/31/pfizer-inc-request-for-report-on-proper-disposal-of-pharmaceuticals">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Blocked by Company at SEC</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Philips 66</span><a href="/resolutions/2017/01/31/the-phillip-66-company-request-for-report-on-indigenous-rights-risk"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Phillips66COmpanyLogo-150x148.png"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Pinnacle West prepare a public report fully disclosing monetary and in-kind expenditures on political activities that cannot be deducted as an “ordinary and necessary” business expense under section 162(e) of the Internal Revenue Code because they are incurred in connection with: (a) influencing legislation, (b) participating or intervening in any political campaign on behalf of (or in opposition to) any candidate for public office, and (c) attempting to influence the general public, or segments thereof, with respect to elections, legislative matters, or referenda. Shareholders request that the report detail any: contributions to, or expenditures in support of or in opposition to, political candidates, committees, and parties; dues, contributions, or other payments made to tax-exempt organizations operating under sections 501(c)(3), 501(c)(4), and 527 of the Internal Revenue Code, respectively, including tax-exempt entities that write model legislation, and non-profit groups organized to promote “social welfare”; portion of dues or other payments made to tax-exempt entities that are used for an expenditure or contribution and that would not be deductible under section 162(e) of the Code if made directly by the Company. The report should identify all recipients of Company funds, and amounts paid to each. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/01/31/the-phillip-66-company-request-for-report-on-indigenous-rights-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Pinnacle West Capital Corporation</span><a href="/resolutions/2017/01/31/pinnacle-west-capital-corporation-request-for-report-on-political-expenditures"><img src="https://www.asyousow.org/wp-content/uploads/2014/12/pinnacle-west-logo-150x95.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Coal</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Pinnacle West prepare a public report fully disclosing monetary and in-kind expenditures on political activities that cannot be deducted as an “ordinary and necessary” business expense under section 162(e) of the Internal Revenue Code because they are incurred in connection with: (a) influencing legislation, (b) participating or intervening in any political campaign on behalf of (or in opposition to) any candidate for public office, and (c) attempting to influence the general public, or segments thereof, with respect to elections, legislative matters, or referenda. Shareholders request that the report detail any: contributions to, or expenditures in support of or in opposition to, political candidates, committees, and parties; dues, contributions, or other payments made to tax-exempt organizations operating under sections 501(c)(3), 501(c)(4), and 527 of the Internal Revenue Code, respectively, including tax-exempt entities that write model legislation, and non-profit groups organized to promote “social welfare”; portion of dues or other payments made to tax-exempt entities that are used for an expenditure or contribution and that would not be deductible under section 162(e) of the Code if made directly by the Company. The report should identify all recipients of Company funds, and amounts paid to each. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/01/31/pinnacle-west-capital-corporation-request-for-report-on-political-expenditures">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Restaurant Brands International</span><a href="/2017/01/31/restaurant-brands-international-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry"><img src="https://www.asyousow.org/wp-content/uploads/2016/01/Restaurant-Brands-Intl-Logo-123x80.png"></a></td>
+            <td data-label="Initiative" class="initiative">Antibiotics &amp; Factory Farms</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Restaurant Brands International adopt an enterprise-wide policy to phase out the use of medically important antibiotics for disease prevention in the company’s meat and poultry supply chain. Shareholders further request the company publish timetables and measures for implementing this policy.</td>
+            <td data-label="Filing Documents" class="set"><a href="/2017/01/31/restaurant-brands-international-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Sanderson Farms</span><a href="/resolutions/2017/01/31/sanderson-farms-inc-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry"><img src="https://www.asyousow.org/wp-content/uploads/2016/09/SandersonFarms-Logo-e1477018169845.png"></a></td>
+            <td data-label="Initiative" class="initiative">Antibiotics &amp; Family Farms</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Sanderson Farms adopt an enterprise-wide policy to phase out the use of medically important antibiotics for growth promotion and disease prevention in its supply chain. Shareholders further request the company publish timetables and measures for implementing this policy. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/01/31/sanderson-farms-inc-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">31.5%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Sempra Energy</span><a href="/resolutions/2016/12/31/sempra-energy-request-for-report-on-methane-leaks"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Sempra-logo.png"></a></td>
+            <td data-label="Initiative" class="initiative">Methane</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Sempra issue a report disclosing the Company’s enterprise-wide policies for assessing, monitoring, and reducing its methane emissions; describing the climate change risk its methane emissions creates for the Company; and discussing the feasibility of setting quantitative methane emission reduction targets across its operations. The report should omit proprietary information and be produced at reasonable cost. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/12/31/sempra-energy-request-for-report-on-methane-leaks">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Shell</span><a href="/resolutions/2017/05/31/shell-oil-company-request-for-report-on-greenhouse-gas-emissions"><img src="https://www.asyousow.org/wp-content/uploads/2014/12/shell-logo.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Greenhouse Gas Emissions</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders support Shell to take leadership in the energy transition to a net-zero-emission energy system. Therefore, shareholders request Shell to set and publish targets for reducing greenhouse gas (GHG) emissions that are aligned with the goal of the Paris Climate Agreement to limit global warming to well below 2°C. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/05/31/shell-oil-company-request-for-report-on-greenhouse-gas-emissions">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">6.3%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Southern Company</span><a href="/resolutions/2016/12/31/southern-company-request-for-report-on-carbon-asset-risk"><img src="https://www.asyousow.org/wp-content/uploads/2014/03/southerncompany-e1395005834609.png"></a></td>
+            <td data-label="Initiative" class="initiative">Carbon Asset Risk</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Southern Company prepare a report disclosing the financial risks to the Company of stranded assets related to climate change and associated coal demand reductions. The report should omit proprietary information and be prepared at reasonable cost. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/12/31/southern-company-request-for-report-on-carbon-asset-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Southern Company</span><a href="/resolutions/2017/01/31/southern-company-request-for-report-on-methane-leaks"><img src="https://www.asyousow.org/wp-content/uploads/2014/03/southerncompany-e1395005834609.png"></a></td>
+            <td data-label="Initiative" class="initiative">Methane</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Southern Company issue a report describing how it will reduce climate risk by controlling its methane emissions, including disclosing its current enterprise-wide methane emissions and the practices used by the Company to measure, monitor, and mitigate methane emissions. The report should be produced at reasonable cost, omitting proprietary information. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/01/31/southern-company-request-for-report-on-methane-leaks">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">T. Rowe Price</span><a href="/resolutions/2016/12/31/t-rowe-price-request-for-report-on-proxy-voting"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/T.RowPrice-Logo.png"></a></td>
+            <td data-label="Initiative" class="initiative">Executive Compensation</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners request the Board of Directors issue a report prior to the next annual meeting, at reasonable cost and omitting proprietary information, which evaluates options for bringing its voting practices in line with its stated principle of linking executive compensation and performance, including: adopting more specific guidance in proxy voting guidelines, adopting best practices of other asset managers and independent rating agencies, and including a broader range of research sources and principles for interpreting compensation data. Such report should assess whether and how the proposed changes would advance the interests of its clients and shareholders. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/12/31/t-rowe-price-request-for-report-on-proxy-voting">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">5.2%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Target</span><a href="/resolutions/2017/01/31/target-request-for-report-on-foam-packaging"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/target.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Consumer Packaging</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareowners of Target request that the board of directors issue a report at reasonable cost, omitting confidential information, assessing the environmental impacts of continued use of foam packing materials, including quantifying the amount that could reach the environment, and assessing the potential for increased risk of adverse health effects to marine animals and humans. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/01/31/target-request-for-report-on-foam-packaging">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Time Warner</span><a href="/resolutions/2017/01/31/time-warner-inc-request-for-report-on-sustainable-development-goals"><img src="https://www.asyousow.org/wp-content/uploads/2014/12/Time-Warner.png"></a></td>
+            <td data-label="Initiative" class="initiative">Smoke-Free Movies</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: That shareholders request that Time Warner issue a report describing how the company will ensure shareholders that its policies and practices are advancing and not undermining the Sustainable Development Goals. As You Sow has engaged with Time Warner on issues related to smoke-free movies. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/01/31/time-warner-inc-request-for-report-on-sustainable-development-goals">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Blocked by Company at SEC</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Walgreens</span><a href="/resolutions/2017/02/28/walgreens-boots-alliance-request-for-report-on-nanomaterials"><img src="https://www.asyousow.org/wp-content/uploads/2014/08/walgreens-small.png"></a></td>
+            <td data-label="Initiative" class="initiative">Nanomaterials</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request the Board publish, within 12 months of the annual meeting, at reasonable cost and excluding proprietary information, a report on potential health hazards of nanomaterials, identifying the types of the company’s products or packaging that currently contain nanoparticles, and stating any actions management is taking to reduce or eliminate health and environmental impacts, such as eliminating the use of such nanomaterials until or unless they are proven safe through long-term testing. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/02/28/walgreens-boots-alliance-request-for-report-on-nanomaterials">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Blocked by Company at SEC</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Wells Fargo</span><a href="/resolutions/2017/11/30/wells-fargo-company-request-for-report-on-adopting-a-global-indigenous-rights-policy"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/WellsFargo-150x150.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Climate Change</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders ask Wells Fargo & Company (WFC) to develop and adopt a global policy regarding the rights of indigenous peoples (the “policy”) which includes respect for the free, prior and informed consent of indigenous communities affected by WFC financing. The policy should acknowledge rights of indigenous peoples to the following: property, culture, religion, and non-discrimination in relation to lands, territories and natural resources, including sacred places and objects; health and physical well-being in relation to a clean and healthy environment; setting and pursuing their own priorities for development; and making authoritative decisions about external projects or investments. The policy should include a description of WFC’s process for identifying, addressing, and periodically evaluating the impact of its business activities on: lands and natural resources subject to traditional ownership or under customary use; relocation of indigenous peoples from lands and natural resources they have traditionally owned or used; and cultural heritage that is essential to the identity and/or cultural, ceremonial, or spiritual aspects of indigenous peoples’ lives. The policy should include the oversight mechanisms for its continued development, evaluation and implementation, as well as the process by which indigenous peoples are consulted in developing the policy.  The policy should describe the process by which the board of directors will monitor implementation of the policy.  The policy should be posted on the WFC website by May 2018. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/11/30/wells-fargo-company-request-for-report-on-adopting-a-global-indigenous-rights-policy">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">18.0%</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">WGL</span><a href="/resolutions/2016/10/31/wgl-holdings-inc-request-for-report-on-methane-leaks"><img src="https://www.asyousow.org/wp-content/uploads/2016/10/WGL-logo-e1477018293232.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Methane</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: As You Sow, on behalf of WGL shareholders, requests that the company develop a report quantifying the financial risk that methane leaks in its natural gas infrastructure pose to the Company and its investors. Shareholders request that the report estimate a) the likely cost of climate change related regulation of its methane leaks, and b) estimate the likelihood, brand damage, and cost of potential catastrophic explosions. The report should exclude proprietary information and be published by September 2018.</td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/10/31/wgl-holdings-inc-request-for-report-on-methane-leaks">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Whiting</span><a href="/resolutions/2016/12/31/whiting-petroleum-corp-request-for-report-on-hydraulic-fracturing-policies"><img src="https://www.asyousow.org/wp-content/uploads/2016/12/Whiting-Petroleum-150x150.jpg"></a></td>
+            <td data-label="Initiative" class="initiative">Hydraulic Fracturing</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request the Board of Directors report to shareholders, using quantitative indicators, the results of company policies and practices, above and beyond regulatory requirements, to minimize the adverse environmental and community impacts from the company’s hydraulic fracturing operations associated with shale formations. Such report should be prepared at reasonable cost, omitting confidential information. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/12/31/whiting-petroleum-corp-request-for-report-on-hydraulic-fracturing-policies">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Xcel Energy</span><a href="/resolutions/2016/12/31/xcel-energy-request-for-report-on-carbon-asset-risk"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/COMPANY-LOGO-Xcel-e1373580411267.png"></a></td>
+            <td data-label="Initiative" class="initiative">Carbon Asset Risk</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that XCEL prepare a report assessing the Company’s risk of stranded assets resulting from global climate change and related fossil fuel demand reductions, including a quantitative analysis of potential short and long term financial losses due to its fossil fuel generation facilities being stranded. The report should be at reasonable cost and omit proprietary information. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2016/12/31/xcel-energy-request-for-report-on-carbon-asset-risk">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+          <tr>
+            <td data-label="Company" class="company imgcenter"><span style="font-size:0;">Yum! Brands</span><a href="/resolutions/2017/01/31/yum-brands-inc-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry"><img src="https://www.asyousow.org/wp-content/uploads/2013/07/Yum-logo-2017.png"></a></td>
+            <td data-label="Initiative" class="initiative">Antibiotics &amp; Factory Farms</td>
+            <td data-label="Resolution" class="resolution">BE IT RESOLVED: Shareholders request that Yum! Brands adopt an enterprise-wide policy to phase out the use of medically important antibiotics for growth promotion and disease prevention in its meat and poultry supply chain. Shareholders further request the company publish timetables and measures for implementing this policy. </td>
+            <td data-label="Filing Documents" class="set"><a href="/resolutions/2017/01/31/yum-brands-inc-request-for-report-on-end-routine-use-of-medically-important-antibiotics-in-meat-poultry">Resolution</a></td>
+            <td data-label="Year" class="year">2017</td>
+            <td data-label="Year" class="status">Withdrawn; Company will address</td>
+          </tr>
+        </tbody>
+      </table>
