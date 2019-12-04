@@ -24,7 +24,7 @@ setTimeout(this.cambiarEstado, 7000,this.router);
 }
 
 cambiarEstado(ruta:Router){
-  ruta.navigate(['/dashboard']);
+  ruta.navigate(['/reporte']);
 }
 
 }
